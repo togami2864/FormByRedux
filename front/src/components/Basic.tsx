@@ -13,6 +13,7 @@ import useStyles from "./styles";
 import { RootState } from "../domain/entity/rootState";
 
 import { Profile } from "../domain/entity/profile";
+import { Gender } from "../domain/entity/gender";
 import { PROFILE } from "../domain/services/profile";
 import profileActions from "../store/profile/actions";
 
@@ -44,7 +45,10 @@ const Basic: React.SFC = () => {
       />
       <FormControl className={classes.formField}>
         <FormLabel>{PROFILE.GENDER}</FormLabel>
-        <RadioGroup>
+        <RadioGroup
+          value={profile.gender}
+          onChange={(e) => handleChange({ gender: e.target.value as Gender })}
+        >
           <FormControlLabel
             value="male"
             label="男性"
