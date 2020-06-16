@@ -9,6 +9,7 @@ import { Address as IAddress } from "../domain/entity/address";
 
 import profileActions from "../store/profile/actions";
 import { isPostalcode } from "../domain/services/address";
+import { searchAddressFromPostalcode } from "../store/profile/effects";
 
 import useStyles from "./styles";
 
@@ -24,6 +25,7 @@ const Address: React.FC = () => {
   const handlePostalcodeChange = (code: string) => {
     if (!isPostalcode(code)) return;
     dispatch(profileActions.setAddress({ postalcode: code }));
+    dispatch(searchAddressFromPostalcode(code));
   };
   return (
     <>
