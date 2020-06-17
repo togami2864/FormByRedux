@@ -1,6 +1,12 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TextField, Grid, InputLabel, Typography } from "@material-ui/core";
+import {
+  TextField,
+  Grid,
+  InputLabel,
+  Typography,
+  Button,
+} from "@material-ui/core";
 import { PROFILE } from "../domain/services/profile";
 
 import { RootState } from "../domain/entity/rootState";
@@ -10,12 +16,16 @@ import profileActions from "../store/profile/actions";
 
 import useStyles from "./styles";
 
-const Career: React.FC = () => {
+const Career = () => {
   const dispatch = useDispatch();
-  const careers = useSelector((state: RootState) => state.careers);
+  const careers = useSelector((state: RootState) => state.profile.careers);
 
   const handleChange = (member: Partial<ICareer>, i: number) => {
     dispatch(profileActions.setCareer({ career: member, index: i }));
+  };
+
+  const handleAddCareer = () => {
+    dispatch(profileActions.addCareer({}));
   };
 
   const classes = useStyles();
@@ -77,6 +87,14 @@ const Career: React.FC = () => {
           </div>
         </Fragment>
       ))}
+      <Button
+        className={classes.button}
+        onClick={handleAddCareer}
+        fullWidth
+        variant="outlined"
+      >
+        職歴を追加
+      </Button>
     </>
   );
 };
