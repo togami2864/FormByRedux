@@ -20,7 +20,7 @@ import useStyles from "./styles";
 const Career = () => {
   const dispatch = useDispatch();
   const careers = useSelector((state: RootState) => state.profile.careers);
-
+  console.log(careers);
   const isAbleToAddCareer = exitEmptyCareers(careers);
 
   const handleChange = (member: Partial<ICareer>, i: number) => {
