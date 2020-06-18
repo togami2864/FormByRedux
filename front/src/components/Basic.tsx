@@ -7,6 +7,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  FormHelperText,
 } from "@material-ui/core";
 
 import useStyles from "./styles";
@@ -20,6 +21,7 @@ import profileActions from "../store/profile/actions";
 const Basic: React.SFC = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
+  const validation = useSelector((state: RootState) => state.validation);
 
   const handleChange = (member: Partial<Profile>) => {
     dispatch(profileActions.setProfile(member));
@@ -31,6 +33,9 @@ const Basic: React.SFC = () => {
         fullWidth
         className={classes.formField}
         label={PROFILE.NAME}
+        required
+        error={!!validation.message.name}
+        helperText={validation.message.name}
         value={profile.name}
         onChange={(e) => handleChange({ name: e.target.value })}
       />
@@ -40,10 +45,17 @@ const Basic: React.SFC = () => {
         className={classes.formField}
         rows={5}
         label={PROFILE.DESCRIPTION}
+        required
+        error={!!validation.message.description}
+        helperText={validation.message.description}
         value={profile.description}
         onChange={(e) => handleChange({ description: e.target.value })}
       />
-      <FormControl className={classes.formField}>
+      <FormControl
+        className={classes.formField}
+        error={!!validation.message.gender}
+        required
+      >
         <FormLabel>{PROFILE.GENDER}</FormLabel>
         <RadioGroup
           value={profile.gender}
@@ -60,11 +72,15 @@ const Basic: React.SFC = () => {
             control={<Radio color="primary" />}
           />
         </RadioGroup>
+        <FormHelperText>{validation.message.gender}</FormHelperText>
       </FormControl>
       <TextField
         fullWidth
         className={classes.formField}
         label={PROFILE.BIRTHDAY}
+        required
+        error={!!validation.message.birthday}
+        helperText={validation.message.birthday}
         type="date"
         value={profile.birthday}
         onChange={(e) => handleChange({ birthday: e.target.value })}

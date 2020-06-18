@@ -5,7 +5,7 @@ const actionCreator = actionCreatorFactory();
 
 const validationActions = {
   setIsStartValidation: actionCreator<boolean>("SET_IS_START_VALIDATION"),
-  setValidation: actionCreator<Validation>("SET_IS_START_VALIDATION"),
+  setValidation: actionCreator<Validation>("SET_VALIDATION"),
 };
 
 export default validationActions;

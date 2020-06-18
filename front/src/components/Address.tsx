@@ -16,6 +16,7 @@ import useStyles from "./styles";
 const Address: React.FC = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
+  const validation = useSelector((state: RootState) => state.validation);
   const classes = useStyles();
 
   const handleAddressChange = (member: Partial<IAddress>) => {
@@ -33,6 +34,9 @@ const Address: React.FC = () => {
         fullWidth
         className={classes.formField}
         label={PROFILE.ADDRESS.POSTALCODE}
+        required
+        error={!!validation.message.address.postalcode}
+        helperText={validation.message.address.postalcode}
         value={profile.address.postalcode}
         onChange={(e) => handlePostalcodeChange(e.target.value)}
       />
@@ -40,6 +44,9 @@ const Address: React.FC = () => {
         fullWidth
         className={classes.formField}
         label={PROFILE.ADDRESS.PREFECTURE}
+        required
+        error={!!validation.message.address.prefecture}
+        helperText={validation.message.address.prefecture}
         value={profile.address.prefecture}
         onChange={(e) => handleAddressChange({ prefecture: e.target.value })}
       />
@@ -47,6 +54,9 @@ const Address: React.FC = () => {
         fullWidth
         className={classes.formField}
         label={PROFILE.ADDRESS.CITY}
+        required
+        error={!!validation.message.address.city}
+        helperText={validation.message.address.city}
         value={profile.address.city}
         onChange={(e) => handleAddressChange({ city: e.target.value })}
       />
@@ -54,6 +64,8 @@ const Address: React.FC = () => {
         fullWidth
         className={classes.formField}
         label={PROFILE.ADDRESS.RESTADDRES}
+        error={!!validation.message.address.restAddress}
+        helperText={validation.message.address.restAddress}
         value={profile.address.restAddress}
         onChange={(e) => handleAddressChange({ restAddress: e.target.value })}
       />
