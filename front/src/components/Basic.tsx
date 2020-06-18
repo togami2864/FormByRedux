@@ -18,6 +18,9 @@ import { Gender } from "../domain/entity/gender";
 import { PROFILE } from "../domain/services/profile";
 import profileActions from "../store/profile/actions";
 
+import { calculateValidation } from "../domain/services/validation";
+import validationActions from "../store/validation/actions";
+
 const Basic: React.SFC = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
@@ -25,8 +28,19 @@ const Basic: React.SFC = () => {
 
   const handleChange = (member: Partial<Profile>) => {
     dispatch(profileActions.setProfile(member));
+    recalculateValidation(member);
   };
   const classes = useStyles();
+
+  const recalculateValidation = (member: Partial<Profile>) => {
+    if (!validation.isStartValidation) return;
+    const newProfile = {
+      ...profile,
+      ...member,
+    };
+    const message = calculateValidation(newProfile);
+    dispatch(validationActions.setValidation(message));
+  };
   return (
     <>
       <TextField
