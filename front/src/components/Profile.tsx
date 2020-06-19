@@ -20,7 +20,7 @@ const Profile = () => {
     const message = calculateValidation(profile);
 
     dispatch(validationActions.setValidation(message));
-    dispatch(validationActions.setIsStartValidation);
+    dispatch(validationActions.setIsStartValidation(true));
   };
 
   const classes = useStyles();
