@@ -9,8 +9,9 @@ import useStyles from "./styles";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../domain/entity/rootState";
-import { calculateValidation } from "../domain/services/validation";
+import { calculateValidation, isValid } from "../domain/services/validation";
 import validationActions from "../store/validation/actions";
+import alertActions from "../store/alert/actions";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -18,9 +19,24 @@ const Profile = () => {
 
   const handleSave = () => {
     const message = calculateValidation(profile);
+    if (isValid(message)) {
+      dispatch(
+        alertActions.openAlert({
+          severity: "success",
+          message: "保存に成功しました！",
+        })
+      );
+      return;
+    }
 
     dispatch(validationActions.setValidation(message));
     dispatch(validationActions.setIsStartValidation(true));
+    dispatch(
+      alertActions.openAlert({
+        severity: "error",
+        message: "入力に誤りがあります。",
+      })
+    );
   };
 
   const classes = useStyles();
