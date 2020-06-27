@@ -9,6 +9,9 @@ const init: Profile = {
   description: "",
   birthday: "",
   gender: "",
+  phone: {
+    phoneNumber: "",
+  },
   address: {
     postalcode: "",
     prefecture: "",
@@ -34,6 +37,10 @@ const profileReducer = reducerWithInitialState(init)
   .case(profileActions.setProfile, (state, payload) => ({
     ...state,
     ...payload,
+  }))
+  .case(profileActions.setPhone, (state, payload) => ({
+    ...state,
+    phone: { phoneNumber: payload },
   }))
   .case(profileActions.setAddress, (state, payload) => ({
     ...state,

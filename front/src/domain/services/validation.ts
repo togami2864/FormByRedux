@@ -3,6 +3,7 @@ import { Validation } from "../entity/validation";
 import { PROFILE } from "./profile";
 import { College } from "../entity/college";
 import { Career } from "../entity/career";
+import profileActions from "../../store/profile/actions";
 
 export const calculateValidation = (profile: Profile) => {
   const message: Validation = {
@@ -10,6 +11,9 @@ export const calculateValidation = (profile: Profile) => {
     description: lengthValidation(profile.description, 1000),
     birthday: emptyValidation(profile.birthday, PROFILE.BIRTHDAY),
     gender: emptyValidation(profile.gender, PROFILE.GENDER),
+    phone: {
+      phoneNumber: emptyValidation(profile.phone.phoneNumber, PROFILE.PHONE),
+    },
     address: {
       postalcode: emptyValidation(
         profile.address.postalcode,

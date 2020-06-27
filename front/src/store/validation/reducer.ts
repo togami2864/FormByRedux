@@ -9,6 +9,9 @@ const init: ValidationState = {
     description: "",
     birthday: "",
     gender: "",
+    phone: {
+      phoneNumber: "",
+    },
     address: {
       postalcode: "",
       prefecture: "",

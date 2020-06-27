@@ -5,6 +5,7 @@ import Basic from "./Basic";
 import Address from "./Address";
 import Career from "./Career";
 import College from "./College";
+import Phone from "./Phone";
 import useStyles from "./styles";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -51,6 +52,7 @@ const Profile = () => {
         基本情報
       </Typography>
       <Basic />
+      <Phone />
       <Typography
         variant="h4"
         component="h2"

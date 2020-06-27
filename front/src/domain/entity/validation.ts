@@ -3,6 +3,9 @@ export type Validation = {
   description: string;
   birthday: string;
   gender: string;
+  phone: {
+    phoneNumber: string;
+  };
   address: {
     postalcode: string;
     prefecture: string;

@@ -20,6 +20,7 @@ import profileActions from "../store/profile/actions";
 
 import { calculateValidation } from "../domain/services/validation";
 import validationActions from "../store/validation/actions";
+import { isPhoneNumber } from "../domain/services/phone";
 
 const Basic: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,10 +31,10 @@ const Basic: React.FC = () => {
     dispatch(profileActions.setProfile(member));
     recalculateValidation(member);
   };
+
   const classes = useStyles();
 
   const recalculateValidation = (member: Partial<Profile>) => {
-    console.log(member);
     if (!validation.isStartValidation) return;
     const newProfile = {
       ...profile,

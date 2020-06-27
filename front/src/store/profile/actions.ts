@@ -8,6 +8,7 @@ const actionCreator = actionCreatorFactory();
 
 const profileActions = {
   setProfile: actionCreator<Partial<Profile>>("SET_PROFILE"),
+  setPhone: actionCreator<string>("SET_PHONE_NUMBER"),
   setAddress: actionCreator<Partial<Address>>("SET_ADDRESS"),
   searchAddress: actionCreator.async<{}, Partial<Address>, {}>(
     "SEARCH_ADDRESS"
